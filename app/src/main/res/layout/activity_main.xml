@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:text="12346"
+                android:text="123456"
                 android:singleLine="true"/>
 
         </android.support.design.widget.TextInputLayout>

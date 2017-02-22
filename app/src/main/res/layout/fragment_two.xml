@@ -25,8 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:divider="@null"
-            ></ListView>
+            android:divider="@color/dividerLine"
+            android:dividerHeight="0.5dp"/>
 
         <TextView
             android:id="@+id/dialog"

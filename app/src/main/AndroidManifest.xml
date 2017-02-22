@@ -63,7 +63,8 @@
         </receiver>
 
         <activity android:name=".LoginSuccessActivity" />
-        <activity android:name=".BaseActivity"></activity>
+        <activity android:name=".BaseActivity" />
+        <activity android:name=".NewFriendsActivity"></activity>
     </application>
 
 </manifest>

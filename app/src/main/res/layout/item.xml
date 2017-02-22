@@ -5,12 +5,17 @@
     android:gravity="center_vertical"
     android:orientation="vertical" >
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/catalog"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#E0E0E0"
-        android:textColor="#454545"
         android:layout_weight="1.0"
         android:paddingLeft="5dip"
         android:paddingTop="5dip"
@@ -24,10 +29,8 @@
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
         android:layout_weight="1.0"
-        android:textColor="#336598"
+        android:textColor="@color/black"
         android:layout_marginLeft="5dip"
-        android:paddingTop="10dip"
-        android:paddingBottom="10dip"
-        android:text="hhhh"/>
+        android:paddingBottom="10dip"/>
 
 </LinearLayout>

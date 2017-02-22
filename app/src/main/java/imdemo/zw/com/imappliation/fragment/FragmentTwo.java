@@ -1,7 +1,11 @@
 package imdemo.zw.com.imappliation.fragment;
 
+import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -10,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.hyphenate.chat.EMClient;
@@ -32,7 +38,7 @@ import imdemo.zw.com.imappliation.widget.SideBar;
  * Created by admin on 2017/2/16.
  */
 
-public class FragmentTwo extends Fragment{
+public class FragmentTwo extends Fragment implements View.OnClickListener {
     private final String TAG="FragmentTwo";
     private View view;
     private ListView sortListView;
@@ -47,6 +53,20 @@ public class FragmentTwo extends Fragment{
     private PinyinComparator pinyinComparator;
     private List<String> mfri=new ArrayList<String>();
 
+    Handler mHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
+                    filledData(mfri);
+                    break;
+                case 1:
+                    goColl();
+                    break;
+            }
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +76,14 @@ public class FragmentTwo extends Fragment{
     }
 
     private void initViews() {
+        sortListView = (ListView) view.findViewById(R.id.country_lvcountry);
+
+        View headerView = LayoutInflater.from(getActivity()).inflate(R.layout.fridendslisthead_layout, null);
+        headerView.setPadding(0,10, 0, 10);
+        sortListView.addHeaderView(headerView);
+        RelativeLayout nfriRe= (RelativeLayout) headerView.findViewById(R.id.nfriRe);
+        nfriRe.setOnClickListener(this);
+
         //实例化汉字转拼音类
         characterParser = CharacterParser.getInstance();
         pinyinComparator = new PinyinComparator();
@@ -73,19 +101,19 @@ public class FragmentTwo extends Fragment{
                 }
             }
         });
-        sortListView = (ListView) view.findViewById(R.id.country_lvcountry);
         sortListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //这里要利用adapter.getItem(position)来获取当前position所对应的对象
-//                Toast.makeText(getApplication(), ((SortModel)adapter.getItem(position)).getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),position+"" , Toast.LENGTH_SHORT).show();
             }
         });
 
+        //获取好友
+        mfri=getFriends();
+    }
 
-        SourceDateList = filledData();
-
+    private void goColl() {
         // 根据a-z进行排序源数据
         Collections.sort(SourceDateList, pinyinComparator);
         adapter = new SortAdapter(getActivity(), SourceDateList);
@@ -107,30 +135,35 @@ public class FragmentTwo extends Fragment{
         });
     }
 
-    /**
-     * 为ListView填充数据
-     * @return
-     */
-    private List<SortModel> filledData(){
+    private List getFriends(){
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     mfri= EMClient.getInstance().contactManager().getAllContactsFromServer();
-                    System.out.println("好友数为：" + mfri.size());
+                    Message msg = new Message();
+                    msg.what=0;
+                    mHandler.sendMessage(msg);
+
                 } catch (HyphenateException e) {
                     e.printStackTrace();
-                    System.out.println("错误为" + e.toString());
                 }
             }
         }).start();
+        return mfri;
+    }
 
+    /**
+     * 为ListView填充数据
+     * @return
+     */
+    private void filledData(List mlist){
         List<SortModel> mSortList = new ArrayList<SortModel>();
-        for(int i=0; i<mfri.size(); i++){
+        for(int i=0; i<mlist.size(); i++){
             SortModel sortModel = new SortModel();
             sortModel.setName(mfri.get(i));
             //汉字转换成拼音
-            String pinyin = characterParser.getSelling(mfri.get(i));
+            String pinyin = characterParser.getSelling(mlist.get(i).toString());
             String sortString = pinyin.substring(0, 1).toUpperCase();
             // 正则表达式，判断首字母是否是英文字母
             if(sortString.matches("[A-Z]")){
@@ -139,8 +172,12 @@ public class FragmentTwo extends Fragment{
                 sortModel.setSortLetters("#");
             }
             mSortList.add(sortModel);
+            System.out.println("aaaa"+mSortList.size());
         }
-        return mSortList;
+        SourceDateList=mSortList;
+        Message msg = new Message();
+        msg.what=1;
+        mHandler.sendMessage(msg);
     }
 
     /**
@@ -166,4 +203,12 @@ public class FragmentTwo extends Fragment{
         adapter.updateListView(filterDateList);
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.nfriRe:
+                Toast.makeText(getActivity(),"新朋友",Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
 }

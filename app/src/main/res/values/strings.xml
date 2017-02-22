@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ImAppliation</string>
+    <string name="friends_con">申请与通知</string>
+    <string name="newfriends">新朋友</string>
 </resources>
