@@ -2,4 +2,13 @@
     <string name="app_name">ImAppliation</string>
     <string name="friends_con">申请与通知</string>
     <string name="newfriends">新朋友</string>
+
+    <string name="Sync_Groups_From_Server">Sync groups with server</string>
+    <string name="add_public_chat_room">Add public chatroom</string>
+    <string name="update_black_list">Update black list</string>
+    <string name="update_black_list_failed">Update black list failed</string>
+    <string name="update_contact_list">Update contact list</string>
+    <string name="update_contact_list_failed">Update contact list failed</string>
+    <string name="update_groups">Update groups</string>
+    <string name="update_groups_failed">Update groups failed</string>
 </resources>

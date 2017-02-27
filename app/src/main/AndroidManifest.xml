@@ -64,7 +64,8 @@
 
         <activity android:name=".LoginSuccessActivity" />
         <activity android:name=".BaseActivity" />
-        <activity android:name=".NewFriendsActivity"></activity>
+        <activity android:name=".NewFriendsActivity" />
+        <activity android:name=".ChatActivity"></activity>
     </application>
 
 </manifest>
