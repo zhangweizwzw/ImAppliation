@@ -11,4 +11,7 @@
     <string name="update_contact_list_failed">Update contact list failed</string>
     <string name="update_groups">Update groups</string>
     <string name="update_groups_failed">Update groups failed</string>
+    <string name="add_friend">添加</string>
+    <string name="friend_name">输入好友名称</string>
+    <string name="addfri_reason">老朋友，好久不见</string>
 </resources>

@@ -1,11 +1,10 @@
 package imdemo.zw.com.imappliation.fragment;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -13,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,10 +26,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import imdemo.zw.com.imappliation.NewfridensMsgActivity;
 import imdemo.zw.com.imappliation.R;
 import imdemo.zw.com.imappliation.adapter.SortAdapter;
 import imdemo.zw.com.imappliation.bean.SortModel;
 import imdemo.zw.com.imappliation.util.CharacterParser;
+import imdemo.zw.com.imappliation.AddFridendActivity;
 import imdemo.zw.com.imappliation.widget.ClearEditText;
 import imdemo.zw.com.imappliation.widget.PinyinComparator;
 import imdemo.zw.com.imappliation.widget.SideBar;
@@ -52,6 +54,8 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
     //根据拼音来排列ListView里面的数据类
     private PinyinComparator pinyinComparator;
     private List<String> mfri=new ArrayList<String>();
+    private TextView title_center;
+    private ImageView title_right;
 
     Handler mHandler=new Handler(){
         @Override
@@ -77,6 +81,12 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
 
     private void initViews() {
         sortListView = (ListView) view.findViewById(R.id.country_lvcountry);
+        title_right= (ImageView) view.findViewById(R.id.title_right);
+        title_center= (TextView) view.findViewById(R.id.title_center);
+        title_center.setText("我的好友");
+        title_right.setVisibility(View.VISIBLE);
+        title_right.setImageResource(R.mipmap.add_fridends);
+        title_right.setOnClickListener(this);
 
         View headerView = LayoutInflater.from(getActivity()).inflate(R.layout.fridendslisthead_layout, null);
         headerView.setPadding(0,10, 0, 10);
@@ -207,7 +217,10 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.nfriRe:
-                Toast.makeText(getActivity(),"新朋友",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), NewfridensMsgActivity.class));
+                break;
+            case R.id.title_right:
+                startActivity(new Intent(getActivity(), AddFridendActivity.class));
                 break;
         }
     }

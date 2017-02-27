@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_fridend"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="imdemo.zw.com.imappliation.AddFridendActivity">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+    <include android:id="@+id/titlebar"
+        layout="@layout/title_bar"/>
+
+
+    <EditText android:id="@+id/fri_reason"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/titlebar"
+        android:background="@drawable/edittext_rounded"
+        android:hint="@string/addfri_reason"
+        android:textSize="14dp"
+        android:gravity="top|left"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:textColorHint="@color/textcolor"/>
+
+    <Button android:id="@+id/goadd"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/add_friend"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/fri_reason"
+        android:textColor="@color/white"
+        android:background="@drawable/textview_shape"/>
+
+
+    <EditText android:id="@+id/fri_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/goadd"
+        android:background="@drawable/edittext_rounded"
+        android:hint="@string/friend_name"
+        android:textSize="14dp"
+        android:paddingLeft="5dp"
+        android:textColorHint="@color/textcolor"
+        android:layout_alignTop="@+id/goadd"/>
+
+</RelativeLayout>

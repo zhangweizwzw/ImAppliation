@@ -5,6 +5,8 @@
     android:orientation="vertical"
     >
 
+    <include layout="@layout/title_bar"/>
+
     <imdemo.zw.com.imappliation.widget.ClearEditText
         android:id="@+id/filter_edit"
         android:layout_marginTop="5dp"
