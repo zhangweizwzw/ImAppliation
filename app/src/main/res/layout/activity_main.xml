@@ -28,7 +28,7 @@
                 android:id="@+id/account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="18311339774"
+                android:text="123456"
                 android:inputType="phone"
                 android:singleLine="true"/>
 

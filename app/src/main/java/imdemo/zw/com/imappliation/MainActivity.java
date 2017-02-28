@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 登录
      */
     private void GoLogin() {
-        if(isOk()){
+//        if(isOk()){
             EMClient.getInstance().login(getUserName(),getPassWord(),new EMCallBack(){
                 @Override
                 public void onSuccess() {
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
             });
-        }
+//        }
     }
 
     /**

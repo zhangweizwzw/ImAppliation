@@ -22,9 +22,18 @@
     <TextView android:id="@+id/fridate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_alignTop="@id/friname"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:textColor="@color/textcolor"/>
+
+    <TextView android:id="@+id/frireason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_toRightOf="@id/friimg"
         android:layout_below="@id/friname"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:textColor="@color/textcolor"
         android:layout_marginLeft="5dp"/>
 

@@ -81,8 +81,8 @@ public class Dateutil {
 	/**
 	 * 友好的方式显示时间
 	 */
-	public static String friendlyFormat(String str) {
-		Date date = strToTime(str);
+	public static String friendlyFormat(Date date) {
+//		Date date = strToTime(str);
 		if (date == null)
 			return ":)";
 		Calendar now = getCal();

@@ -37,8 +37,7 @@ public class NewfridensMsgActivity extends AppCompatActivity implements View.OnC
             super.handleMessage(msg);
             switch (msg.what){
                 case 0:
-                    System.out.println("ddddddddddddddd");
-//                    adapter.notifyItemChanged(0);
+                    adapter.notifyDataSetChanged();
                     break;
             }
         }
@@ -51,9 +50,6 @@ public class NewfridensMsgActivity extends AppCompatActivity implements View.OnC
 
         initView();
         getmsg();
-
-//        initData();
-
     }
 
     private void initView() {
@@ -65,7 +61,7 @@ public class NewfridensMsgActivity extends AppCompatActivity implements View.OnC
         title_left.setOnClickListener(this);
 
         msglist= (RecyclerView) findViewById(R.id.msglist);
-        adapter=new DemolistAdapter(this,frilist);
+        adapter=new DemolistAdapter(NewfridensMsgActivity.this,frilist);
         msglist.setAdapter(adapter);
 
         msglist.setLayoutManager(new LinearLayoutManager(this));
@@ -84,7 +80,6 @@ public class NewfridensMsgActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onContactAgreed(String username) {
                 //好友请求被同意
-                System.out.println("1111111111111"+username);
                 addfriToList(username,1);
 
             }
@@ -92,21 +87,17 @@ public class NewfridensMsgActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onContactRefused(String username) {
                 //好友请求被拒绝
-                System.out.println("2222222222222"+username);
                 addfriToList(username,2);
-
             }
 
             @Override
             public void onContactInvited(String username, String reason) {
                 //收到好友邀请
-                System.out.println("3333333333333"+username);
                 addfriToList(username,3);
             }
 
             @Override
             public void onContactDeleted(String username) {
-                System.out.println("444444444444444"+username);
                 //被删除时回调此方法
                 addfriToList(username,4);
             }
@@ -115,38 +106,22 @@ public class NewfridensMsgActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onContactAdded(String username) {
                 //增加了联系人时回调此方法
-                System.out.println("5555555555555555"+username);
                 addfriToList(username,5);
             }
         });
     }
 
     private void addfriToList(String username,int type) {
-        System.out.println("aaaaaaaaaaaaaaaaaaaa");
         FriendMsgBean fribean=new FriendMsgBean();
-        fribean.setUserDate(Dateutil.getDate().toString());
+        fribean.setUserDate(Dateutil.friendlyFormat(Dateutil.getDate()));
         fribean.setUserName(username);
         fribean.setType(type);
-        System.out.println("bbbbbbbbbbbbbbbbbbbb");
         frilist.add(fribean);
-        System.out.println("ccccccccccccccccccc");
 
         Message message=new Message();
         message.what=0;
         handler.sendMessage(message);
-
-//        adapter.notifyItemChanged(0);
     }
-    protected void initData() {
-        FriendMsgBean fribean=new FriendMsgBean();
-        fribean.setUserDate(Dateutil.getDate().toString());
-        fribean.setUserName("aaaaaaaa");
-        fribean.setType(1);
-
-        frilist.add(fribean);
-
-    }
-
 
     @Override
     public void onClick(View view) {
