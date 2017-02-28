@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import imdemo.zw.com.imappliation.util.MyToast;
+import imdemo.zw.com.imappliation.util.SnackbarUtils;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private final String TAG="MainActivity";
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         System.out.println("注册成功");
                     } catch (HyphenateException e) {
                         e.printStackTrace();
-                      System.out.println("注册失败："+e.toString());
+                        SnackbarUtils.longSnackbar(account_register_button,e.getMessage().toString(), getResources().getColor(R.color.white),getResources().getColor(R.color.title_bg)).show();
                     }
                 }
             }).start();
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 @Override
                 public void onError(int code, String error) {
-                    System.out.println("登录失败："+error);
+                    SnackbarUtils.longSnackbar(account_register_button,error.toString(), getResources().getColor(R.color.white),getResources().getColor(R.color.title_bg)).show();
                 }
 
                 @Override

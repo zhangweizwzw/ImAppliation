@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/rela"
+    android:layout_height="match_parent">
+
+    <ImageView android:id="@+id/friimg"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView android:id="@+id/friname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/friimg"
+        android:layout_toRightOf="@id/friimg"
+        android:textSize="14sp"
+        android:textColor="@color/textcolor"
+        android:layout_marginLeft="5dp"/>
+
+    <TextView android:id="@+id/fridate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/friimg"
+        android:layout_below="@id/friname"
+        android:textSize="14sp"
+        android:textColor="@color/textcolor"
+        android:layout_marginLeft="5dp"/>
+
+</RelativeLayout>

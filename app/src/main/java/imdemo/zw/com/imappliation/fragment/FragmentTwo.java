@@ -115,7 +115,7 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //这里要利用adapter.getItem(position)来获取当前position所对应的对象
-                Toast.makeText(getActivity(),position+"" , Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(),position+"" , Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -182,7 +182,6 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
                 sortModel.setSortLetters("#");
             }
             mSortList.add(sortModel);
-            System.out.println("aaaa"+mSortList.size());
         }
         SourceDateList=mSortList;
         Message msg = new Message();
